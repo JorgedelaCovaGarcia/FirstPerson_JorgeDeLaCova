@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class FirstPerson : MonoBehaviour
 {
     [SerializeField] private float velocidadMovimiento;
-    CharacterController controller;
+    private CharacterController controller;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -24,9 +24,9 @@ public class FirstPerson : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal"); //h=0, h= -1, h= 1
         float v = Input.GetAxisRaw("Vertical");
 
-        Vector3 movimiento = new Vector3(h, 0, v).normalized;
+        Vector2 movimiento = new Vector2(h,v).normalized;
 
-        float anguloRotacion = Mathf.Atan2(movimiento.x,movimiento.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        float anguloRotacion = Mathf.Atan2(movimiento.x,movimiento.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
         
         if(movimiento.magnitude > 0)
         {
