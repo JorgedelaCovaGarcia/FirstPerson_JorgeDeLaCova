@@ -7,12 +7,15 @@ public class FirstPerson : MonoBehaviour
 {
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float smoothTime;
-    private CharacterController controller;
+    private CharacterController controler;
 
     private float velocidadRotacion;
+
+    private Animator anim;
+    E
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        controler = GetComponent<CharacterController>();
 
     }
 
