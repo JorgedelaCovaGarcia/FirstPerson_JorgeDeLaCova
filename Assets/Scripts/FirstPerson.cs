@@ -5,6 +5,8 @@ using UnityEngine.Rendering;
 
 public class FirstPerson : MonoBehaviour
 {
+    [SerializeField] private float vidas;
+
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float factorGravedad;
     [SerializeField] private float movimientoVertical;
@@ -22,6 +24,10 @@ public class FirstPerson : MonoBehaviour
 
     }
 
+    private void RecibirDanho()
+    {
+
+    }
     void Update()
     {
         MoverYRotar();
