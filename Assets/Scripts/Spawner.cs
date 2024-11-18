@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+
+    [SerialeizeField] private GameObject enemigoPrefab;
+    [SerialeizeField] private Transform[] puntosSpawn;
+    [SerialeizeField] private int numeroNiveles;
+    [SerialeizeField] private int rondasPorNivel;
+    [SerialeizeField] private int spawnPorRonda;
+    [SerialeizeField] private float esperaEntreSpawns;
+    [SerialeizeField] private float esperaEntreRondas;
+    [SerialeizeField] private float esperaEntreNiveles;
+
     // Start is called before the first frame update
     void Start()
     {
-        StarCorutine(SpawnerarEnemigos());
+        StartCoroutine(Spawnear());
     }
 
     // Update is called once per frame
@@ -16,12 +26,24 @@ public class Spawner : MonoBehaviour
         
     }
 
-    private IEnumerator SpawnearEnemigos()
+    private IEnumerator Spawnear()
     {
-        while(true)
+        for (int i = 0; i < numeroNiveles; i++)
         {
-            Instantiate(enemigoPrefab, puntoSpawn.transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(2);
+            for (int j = 0; j < rondasPorNivel; j++)
+            {
+                for (int k = 0; k < spawnPorRonda; k++)
+                {
+                    int indiceAleatorio = Random.Range(0, puntosSpawn.Length);
+                    Instantiate(enemigoPrefab, puntosSpawn[indiceAleatorio].position, Queaternion.identity);
+
+                    yield return new WaitForSeconds(esperaEntreSpawns);
+                }
+
+                yield return new WaitForSeconds(esperaEntreRondas);
+            }
+
+            yield return new WaitForSeconds(esperaEntreNiveles);
         }
     }
 }
